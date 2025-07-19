@@ -23,25 +23,25 @@ interface WeatherResponse {
 // Демо данные для разработки (замените на реальный API ключ)
 const DEMO_WEATHER_DATA: WeatherResponse = {
   current: {
-    temperature: -2,
-    feelsLike: -5,
-    description: "Снег",
-    humidity: 78,
-    iconCode: "13d",
+    temperature: 22,
+    feelsLike: 24,
+    description: "Облачно с прояснениями",
+    humidity: 65,
+    iconCode: "03d",
     city: "Москва"
   },
   forecast: [
     {
       date: "завтра",
-      temperature: -1,
-      description: "Облачно",
-      iconCode: "04d"
+      temperature: 25,
+      description: "Небольшой дождь",
+      iconCode: "10d"
     },
     {
       date: "послезавтра", 
-      temperature: 2,
-      description: "Ясно",
-      iconCode: "01d"
+      temperature: 27,
+      description: "Переменная облачность",
+      iconCode: "02d"
     }
   ]
 };
