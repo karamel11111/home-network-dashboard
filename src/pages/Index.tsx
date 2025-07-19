@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 
 const Index = () => {
   const [weatherData, setWeatherData] = useState<WeatherResponse | null>(null);
+  const [showAllNews, setShowAllNews] = useState(false);
   const [trafficData, setTrafficData] = useState<TrafficResponse | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -170,9 +171,29 @@ const Index = () => {
                 <h3 className="font-semibold text-white mb-1">Реконструкция парка Горького завершена</h3>
                 <p className="text-sm text-slate-400">3 часа назад</p>
               </div>
+              {showAllNews && (
+                <>
+                  <div className="border-l-4 border-green-500 pl-4">
+                    <h3 className="font-semibold text-white mb-1">Фестиваль "Московские сезоны" продлён до конца августа</h3>
+                    <p className="text-sm text-slate-400">5 часов назад</p>
+                  </div>
+                  <div className="border-l-4 border-red-500 pl-4">
+                    <h3 className="font-semibold text-white mb-1">Ограничения движения на Тверской улице</h3>
+                    <p className="text-sm text-slate-400">8 часов назад</p>
+                  </div>
+                  <div className="border-l-4 border-cyan-500 pl-4">
+                    <h3 className="font-semibold text-white mb-1">Открытие нового торгового центра в районе Измайлово</h3>
+                    <p className="text-sm text-slate-400">12 часов назад</p>
+                  </div>
+                </>
+              )}
             </div>
-            <Button variant="outline" className="w-full mt-4 bg-transparent border-slate-600 hover:bg-slate-700">
-              Показать все новости
+            <Button 
+              variant="outline" 
+              className="w-full mt-4 bg-transparent border-slate-600 hover:bg-slate-700"
+              onClick={() => setShowAllNews(!showAllNews)}
+            >
+              {showAllNews ? 'Скрыть новости' : 'Показать все новости'}
             </Button>
           </CardContent>
         </Card>
