@@ -32,8 +32,8 @@ const Index = () => {
 
     fetchData();
     
-    // Обновляем данные каждые 5 минут
-    const interval = setInterval(fetchData, 5 * 60 * 1000);
+    // Обновляем данные каждый час
+    const interval = setInterval(fetchData, 60 * 60 * 1000);
     
     // Обновляем новости каждый час
     const newsInterval = setInterval(() => {
