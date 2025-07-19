@@ -10,6 +10,7 @@ const Index = () => {
   const [weatherData, setWeatherData] = useState<WeatherResponse | null>(null);
   const [showAllNews, setShowAllNews] = useState(false);
   const [trafficData, setTrafficData] = useState<TrafficResponse | null>(null);
+  const [lastNewsUpdate, setLastNewsUpdate] = useState(new Date());
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,7 +35,15 @@ const Index = () => {
     // Обновляем данные каждые 5 минут
     const interval = setInterval(fetchData, 5 * 60 * 1000);
     
-    return () => clearInterval(interval);
+    // Обновляем новости каждый час
+    const newsInterval = setInterval(() => {
+      setLastNewsUpdate(new Date());
+    }, 60 * 60 * 1000);
+    
+    return () => {
+      clearInterval(interval);
+      clearInterval(newsInterval);
+    };
   }, []);
 
   const getCurrentTime = () => {
@@ -152,9 +161,15 @@ const Index = () => {
         {/* News Widget */}
         <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm col-span-1 lg:col-span-2">
           <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-2 text-white">
-              <Icon name="Newspaper" size={20} />
-              Новости Москвы
+            <CardTitle className="flex items-center justify-between text-white">
+              <div className="flex items-center gap-2">
+                <Icon name="Newspaper" size={20} />
+                Новости Москвы
+              </div>
+              <div className="flex items-center gap-1 text-xs text-slate-400">
+                <Icon name="Clock" size={12} />
+                Обновлено: {lastNewsUpdate.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}
+              </div>
             </CardTitle>
           </CardHeader>
           <CardContent>
