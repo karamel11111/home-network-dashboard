@@ -174,29 +174,29 @@ const Index = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <a href="https://mos.ru/news/item/137892073/" target="_blank" rel="noopener noreferrer" className="block border-l-4 border-blue-500 pl-4 hover:bg-slate-700/30 transition-colors rounded-r-lg p-2 -m-2">
+              <a href="https://mos.ru/news/" target="_blank" rel="noopener noreferrer" className="block border-l-4 border-blue-500 pl-4 hover:bg-slate-700/30 transition-colors rounded-r-lg p-2 -m-2">
                 <h3 className="font-semibold text-white mb-1 hover:text-blue-400 transition-colors">Новая станция метро открылась на Сокольнической линии</h3>
                 <p className="text-sm text-slate-400">15 минут назад</p>
               </a>
-              <a href="https://mos.ru/news/item/137891854/" target="_blank" rel="noopener noreferrer" className="block border-l-4 border-purple-500 pl-4 hover:bg-slate-700/30 transition-colors rounded-r-lg p-2 -m-2">
+              <a href="https://mos.ru/news/" target="_blank" rel="noopener noreferrer" className="block border-l-4 border-purple-500 pl-4 hover:bg-slate-700/30 transition-colors rounded-r-lg p-2 -m-2">
                 <h3 className="font-semibold text-white mb-1 hover:text-purple-400 transition-colors">Температурный рекорд зафиксирован в столице</h3>
                 <p className="text-sm text-slate-400">1 час назад</p>
               </a>
-              <a href="https://mos.ru/news/item/137890632/" target="_blank" rel="noopener noreferrer" className="block border-l-4 border-orange-500 pl-4 hover:bg-slate-700/30 transition-colors rounded-r-lg p-2 -m-2">
+              <a href="https://mos.ru/news/" target="_blank" rel="noopener noreferrer" className="block border-l-4 border-orange-500 pl-4 hover:bg-slate-700/30 transition-colors rounded-r-lg p-2 -m-2">
                 <h3 className="font-semibold text-white mb-1 hover:text-orange-400 transition-colors">Реконструкция парка Горького завершена</h3>
                 <p className="text-sm text-slate-400">3 часа назад</p>
               </a>
               {showAllNews && (
                 <>
-                  <a href="https://mos.ru/news/item/137889421/" target="_blank" rel="noopener noreferrer" className="block border-l-4 border-green-500 pl-4 hover:bg-slate-700/30 transition-colors rounded-r-lg p-2 -m-2">
+                  <a href="https://mos.ru/news/" target="_blank" rel="noopener noreferrer" className="block border-l-4 border-green-500 pl-4 hover:bg-slate-700/30 transition-colors rounded-r-lg p-2 -m-2">
                     <h3 className="font-semibold text-white mb-1 hover:text-green-400 transition-colors">Фестиваль "Московские сезоны" продлён до конца августа</h3>
                     <p className="text-sm text-slate-400">5 часов назад</p>
                   </a>
-                  <a href="https://mos.ru/news/item/137888195/" target="_blank" rel="noopener noreferrer" className="block border-l-4 border-red-500 pl-4 hover:bg-slate-700/30 transition-colors rounded-r-lg p-2 -m-2">
+                  <a href="https://mos.ru/news/" target="_blank" rel="noopener noreferrer" className="block border-l-4 border-red-500 pl-4 hover:bg-slate-700/30 transition-colors rounded-r-lg p-2 -m-2">
                     <h3 className="font-semibold text-white mb-1 hover:text-red-400 transition-colors">Ограничения движения на Тверской улице</h3>
                     <p className="text-sm text-slate-400">8 часов назад</p>
                   </a>
-                  <a href="https://mos.ru/news/item/137887264/" target="_blank" rel="noopener noreferrer" className="block border-l-4 border-cyan-500 pl-4 hover:bg-slate-700/30 transition-colors rounded-r-lg p-2 -m-2">
+                  <a href="https://mos.ru/news/" target="_blank" rel="noopener noreferrer" className="block border-l-4 border-cyan-500 pl-4 hover:bg-slate-700/30 transition-colors rounded-r-lg p-2 -m-2">
                     <h3 className="font-semibold text-white mb-1 hover:text-cyan-400 transition-colors">Открытие нового торгового центра в районе Измайлово</h3>
                     <p className="text-sm text-slate-400">12 часов назад</p>
                   </a>
