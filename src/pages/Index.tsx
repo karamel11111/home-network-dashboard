@@ -2,8 +2,40 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { weatherService, WeatherResponse } from '@/services/weatherApi';
+import { trafficService, TrafficResponse } from '@/services/trafficApi';
+import { useState, useEffect } from 'react';
 
 const Index = () => {
+  const [weatherData, setWeatherData] = useState<WeatherResponse | null>(null);
+  const [trafficData, setTrafficData] = useState<TrafficResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const [weather, traffic] = await Promise.all([
+          weatherService.getCurrentWeather('Moscow'),
+          trafficService.getTrafficData()
+        ]);
+        setWeatherData(weather);
+        setTrafficData(traffic);
+      } catch (error) {
+        console.error('Ошибка загрузки данных:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+    
+    // Обновляем данные каждые 5 минут
+    const interval = setInterval(fetchData, 5 * 60 * 1000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
   const getCurrentTime = () => {
     return new Date().toLocaleString('ru-RU', {
       weekday: 'long',
@@ -34,30 +66,36 @@ const Index = () => {
             <CardTitle className="flex items-center gap-2 text-white">
               <Icon name="Cloud" size={24} />
               Погода в Москве
+              {loading && <div className="w-4 h-4 border-2 border-blue-400 border-t-transparent rounded-full animate-spin"></div>}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <div className="text-4xl font-bold text-blue-400">-2°C</div>
-                <div className="text-slate-400">Ощущается как -5°C</div>
-              </div>
-              <Icon name="CloudSnow" size={48} className="text-blue-400" />
-            </div>
-            <div className="grid grid-cols-3 gap-4 text-sm">
-              <div className="text-center">
-                <div className="text-slate-400">Завтра</div>
-                <div className="font-semibold">-1°C</div>
-              </div>
-              <div className="text-center">
-                <div className="text-slate-400">Послезавтра</div>
-                <div className="font-semibold">+2°C</div>
-              </div>
-              <div className="text-center">
-                <div className="text-slate-400">Влажность</div>
-                <div className="font-semibold">78%</div>
-              </div>
-            </div>
+            {weatherData && (
+              <>
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <div className="text-4xl font-bold text-blue-400">{weatherData.current.temperature}°C</div>
+                    <div className="text-slate-400">Ощущается как {weatherData.current.feelsLike}°C</div>
+                    <div className="text-slate-300 text-sm">{weatherData.current.description}</div>
+                  </div>
+                  <Icon name={weatherService.getWeatherIcon(weatherData.current.description)} size={48} className="text-blue-400" />
+                </div>
+                <div className="grid grid-cols-3 gap-4 text-sm">
+                  <div className="text-center">
+                    <div className="text-slate-400">{weatherData.forecast[0]?.date || 'Завтра'}</div>
+                    <div className="font-semibold">{weatherData.forecast[0]?.temperature || 'N/A'}°C</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-slate-400">{weatherData.forecast[1]?.date || 'Послезавтра'}</div>
+                    <div className="font-semibold">{weatherData.forecast[1]?.temperature || 'N/A'}°C</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-slate-400">Влажность</div>
+                    <div className="font-semibold">{weatherData.current.humidity}%</div>
+                  </div>
+                </div>
+              </>
+            )}
           </CardContent>
         </Card>
 
@@ -81,23 +119,32 @@ const Index = () => {
             <CardTitle className="flex items-center gap-2 text-white">
               <Icon name="Car" size={20} />
               Пробки
+              {loading && <div className="w-3 h-3 border-2 border-orange-400 border-t-transparent rounded-full animate-spin"></div>}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-slate-400">Садовое кольцо</span>
-                <Badge variant="destructive">9 баллов</Badge>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-slate-400">ТТК</span>
-                <Badge variant="outline" className="bg-yellow-500/20 text-yellow-400 border-yellow-500">7 баллов</Badge>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-slate-400">МКАД</span>
-                <Badge variant="outline" className="bg-green-500/20 text-green-400 border-green-500">4 балла</Badge>
-              </div>
-            </div>
+            {trafficData && (
+              <>
+                <div className="space-y-3">
+                  {trafficData.roads.slice(0, 3).map((road, index) => (
+                    <div key={index} className="flex items-center justify-between">
+                      <span className="text-sm text-slate-400">{road.name}</span>
+                      <Badge 
+                        variant={trafficService.getBadgeVariant(road.color)}
+                        className={road.color !== 'red' ? trafficService.getBadgeClasses(road.color) : ''}
+                      >
+                        {road.level} {road.level === 1 ? 'балл' : road.level < 5 ? 'балла' : 'баллов'}
+                      </Badge>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-3 pt-3 border-t border-slate-700">
+                  <div className="text-xs text-slate-500">
+                    Обновлено: {trafficData.lastUpdated}
+                  </div>
+                </div>
+              </>
+            )}
           </CardContent>
         </Card>
 
