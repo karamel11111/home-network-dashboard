@@ -187,19 +187,23 @@ const Index = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 p-4 rounded-lg">
-                <h3 className="font-semibold text-white mb-2">Олимпиада по математике</h3>
-                <p className="text-sm text-slate-300 mb-2">Региональный этап начинается 25 января</p>
-                <Badge variant="outline" className="bg-blue-500/20 text-blue-400 border-blue-500">Важное</Badge>
+              <div className="bg-gradient-to-r from-green-500/20 to-blue-500/20 p-4 rounded-lg">
+                <h3 className="font-semibold text-white mb-2">Летние профильные смены</h3>
+                <p className="text-sm text-slate-300 mb-2">Набор в IT-лагерь и математическую смену на август</p>
+                <Badge variant="outline" className="bg-green-500/20 text-green-400 border-green-500">Запись открыта</Badge>
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-slate-400">Родительское собрание 8А</span>
-                  <span className="text-xs text-slate-500">28 янв</span>
+                  <span className="text-sm text-slate-400">Выпускной 11 классов</span>
+                  <span className="text-xs text-slate-500">25 июля</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-slate-400">День открытых дверей</span>
-                  <span className="text-xs text-slate-500">2 фев</span>
+                  <span className="text-sm text-slate-400">Подача документов в 10 класс</span>
+                  <span className="text-xs text-slate-500">до 28 июля</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-slate-400">Ремонт актового зала</span>
+                  <span className="text-xs text-slate-500">июль-август</span>
                 </div>
               </div>
             </div>
