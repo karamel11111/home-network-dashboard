@@ -93,15 +93,15 @@ const Index = () => {
                 <div className="grid grid-cols-3 gap-4 text-sm">
                   <div className="text-center">
                     <div className="text-slate-400">{weatherData.forecast[0]?.date || 'Завтра'}</div>
-                    <div className="font-semibold my-0">{weatherData.forecast[0]?.temperature || 'N/A'}°C</div>
+                    <div className="font-semibold my-0 rounded-sm bg-[#ffffff]">{weatherData.forecast[0]?.temperature || 'N/A'}°C</div>
                   </div>
                   <div className="text-center">
                     <div className="text-slate-400">{weatherData.forecast[1]?.date || 'Послезавтра'}</div>
-                    <div className="font-semibold">{weatherData.forecast[1]?.temperature || 'N/A'}°C</div>
+                    <div className="font-semibold bg-[#ffffff]">{weatherData.forecast[1]?.temperature || 'N/A'}°C</div>
                   </div>
                   <div className="text-center">
                     <div className="text-slate-400">Влажность</div>
-                    <div className="font-semibold">{weatherData.current.humidity}%</div>
+                    <div className="font-semibold bg-[#ffffff]">{weatherData.current.humidity}%</div>
                   </div>
                 </div>
               </>
