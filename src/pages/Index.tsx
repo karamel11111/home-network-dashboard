@@ -101,7 +101,7 @@ const Index = () => {
                   </div>
                   <div className="text-center">
                     <div className="text-slate-400">Влажность</div>
-                    <div className="font-semibold bg-[#ffffff]">{weatherData.current.humidity}%</div>
+                    <div className="text-slate-300 text-sm">{weatherData.current.humidity}%</div>
                   </div>
                 </div>
               </>
