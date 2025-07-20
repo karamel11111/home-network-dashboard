@@ -61,10 +61,10 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-6">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent text-center">
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent text-center px-0 my-0 mx-[275px]">
           Домашняя панель
         </h1>
-        <p className="text-slate-400 text-lg text-center">{getCurrentTime()}</p>
+        <p className="text-slate-400 text-lg text-center mx-[275px]">{getCurrentTime()}</p>
       </div>
 
       {/* Main Grid */}
