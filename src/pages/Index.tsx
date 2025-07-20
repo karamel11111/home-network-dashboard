@@ -93,7 +93,7 @@ const Index = () => {
                 <div className="grid grid-cols-3 gap-4 text-sm">
                   <div className="text-center">
                     <div className="text-slate-400">{weatherData.forecast[0]?.date || 'Завтра'}</div>
-                    <div className="font-semibold my-0 rounded-sm bg-[#00000]">{weatherData.forecast[0]?.temperature || 'N/A'}°C</div>
+                    <div className="text-slate-300 text-sm">{weatherData.forecast[0]?.temperature || 'N/A'}°C</div>
                   </div>
                   <div className="text-center">
                     <div className="text-slate-400">{weatherData.forecast[1]?.date || 'Послезавтра'}</div>
